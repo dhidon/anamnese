@@ -53,25 +53,14 @@ export default function Identificacao() {
         { label: 'Instituição', value: 'instituição' }
     ]
 
-    const formatarData = (texto) => {
+    const formatarData = (texto, callback) => {
         let textoFiltrado = texto.replace(/\D/g, '')
         if (textoFiltrado.length >= 5) {
             textoFiltrado = textoFiltrado.substring(0, 2) + '/' + textoFiltrado.substring(2, 4) + '/' + textoFiltrado.substring(4,8)
         } else if (textoFiltrado.length >= 3) {
             textoFiltrado = textoFiltrado.substring(0, 2) + '/' + textoFiltrado.substring(2, 4)
         }
-        setData(textoFiltrado)
-    }
-    
-    const formatarDataNascimento = (texto) => {
-        let textoFiltrado = texto.replace(/\D/g, '')
-        if (textoFiltrado.length >= 5) {
-            textoFiltrado = textoFiltrado.substring(0, 2) + '/' + textoFiltrado.substring(2, 4) + '/' + textoFiltrado.substring(4, 8)
-        } else if (textoFiltrado.length >= 3) {
-            textoFiltrado = textoFiltrado.substring(0, 2) + '/' + textoFiltrado.substring(2, 4)
-        }
-
-        setNascimento(textoFiltrado)
+        callback(textoFiltrado)
     }
 
     const formatarCep = (texto) => {
@@ -85,50 +74,19 @@ export default function Identificacao() {
         setCep(textoFiltrado)
     }
 
-    const formatarDataMae = (texto) => {
-        let textoFiltrado = texto.replace(/\D/g, '')
-        if (textoFiltrado.length >= 5) {
-            textoFiltrado = `${textoFiltrado.substring(0, 2)}/${textoFiltrado.substring(2,4)}/${textoFiltrado.substring(4,8)}`
-        } else if (textoFiltrado.length >= 3) {
-            textoFiltrado = `${textoFiltrado.substring(0,2)}/${textoFiltrado.substring(2,4)}`
-        }
-        setNascimentoMae(textoFiltrado)
-    }
-
-    const formatarDataPai = (texto) => {
-        let textoFiltrado = texto.replace(/\D/g,'')
-        if (textoFiltrado.length >= 5) {
-            textoFiltrado = `${textoFiltrado.substring(0,2)}/${textoFiltrado.substring(2,4)}/${textoFiltrado.substring(4,8)}`
-        } else if(textoFiltrado.length >= 3){
-            textoFiltrado = `${textoFiltrado.substring(0,2)}/${textoFiltrado.substring(2,4)}`
-        }
-        setNascimentoPai(textoFiltrado)
-    }
-
     const formatarSus = (texto) => {
         let textoFiltrado = texto.replace(/\D/g, '')
         textoFiltrado = textoFiltrado.match(/.{1,4}/g)?.join(' ') || textoFiltrado
         setSus(textoFiltrado)
     }
-
-    const convertToAccess = () => {
-        try {
-            const [dia, mes, ano] = nascimento.split('/')
-            const dataAccess = `${ano}-${mes}-${dia}`
-            return dataAccess
-        } catch (Error) {
-            Alert.alert('Erro', 'Certifique-se de digitar a data correta')
-        }
-    }
     
-
     return (
             <View style={styles.container}>
                 <View>
                     <Text>Data:</Text>
                     <TextInput 
                         style={{borderWidth: 1, borderRadius: 8, width: '40%', textAlign: 'center'}} 
-                        onChangeText={formatarData}
+                        onChangeText={texto=>formatarData(texto, setData)}
                         placeholder='DD/MM/AAAA'
                         value={data}
                     />
@@ -144,7 +102,7 @@ export default function Identificacao() {
             <TextInput
                 style={styles.input}
                 placeholder='DD/MM/AAAA'
-                onChangeText={formatarDataNascimento}
+                onChangeText={texto=>formatarData(texto, setNascimento)}
                 value={nascimento}
             />
             
@@ -209,7 +167,7 @@ export default function Identificacao() {
             />
             <TextInput
                 style={styles.input}
-                onChangeText={formatarDataMae}
+                onChangeText={texto=>formatarData(texto, setNascimentoMae)}
                 value={nascimentoMae}
                 placeholder='Data de nascimento'
             />
@@ -228,7 +186,7 @@ export default function Identificacao() {
             />
             <TextInput
                 style={styles.input}
-                onChangeText={formatarDataPai}
+                onChangeText={texto=>formatarData(texto, setNascimentoPai)}
                 value={nascimentoPai}
                 placeholder='Data de nascimento'
             />
