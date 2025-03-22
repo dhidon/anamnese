@@ -28,7 +28,7 @@ export default function Identificacao() {
     const [estadoCivilSelecionado, setEstadoCivilSelecionado] = useState(0)
     const [idadeSeparacao, setIdadeSeparacao] = useState()
     const [guardaSelecionada, setGuardaSelecionada] = useState(0)
-    const [padrasto, setPadrasto] = useState('')
+    const [padrastoMadrasta, setPadrastoMadrasta] = useState('')
     const [motivo, setMotivo] = useState('')
     const [guardiao, setGuardiao] = useState('')
     const [guardiaoLegalSelecionado, setGuardiaoLegalSelecionado] = useState(0)
@@ -221,8 +221,8 @@ export default function Identificacao() {
                     <Text>Qual o nome do padrasto/madrasta?</Text>
                     <TextInput
                     style={styles.input}
-                    value={padrasto}
-                    onchangeText={newText => setPadrasto(newText)}
+                    value={padrastoMadrasta}
+                    onchangeText={newText => setPadrastoMadrasta(newText)}
                     />
                 </View>
                 :<View style={{gap: 10}}>

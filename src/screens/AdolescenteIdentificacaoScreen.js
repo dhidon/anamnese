@@ -10,7 +10,7 @@ export default function AdolescenteIdentificacao() {
         <ScrollView
             showsVerticalScrollIndicator={false}
         >
-            <View style={{margin: 20}}>
+            <View style={{margin: 20, gap: 10}}>
                 <Header direcionado='Adolescentes'/>
                 <Identificacao/>
             </View>

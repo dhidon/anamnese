@@ -18,5 +18,6 @@ export default function AdolescenteHistoricoScreen() {
 const styles = StyleSheet.create({
     container: {
         margin: 20,
+        gap: 10
     }
 })

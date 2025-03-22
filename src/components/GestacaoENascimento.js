@@ -23,8 +23,8 @@ export default function GestacaoNascimento() {
     const [fototerapiaSelecionado, setFototerapiaSelecionado] = useState([])
 
 
-    const intercorrencia = [{label: 'Sim', value: 'sim'}, {label: 'Não', value: 'não'}]
     const planejada = [{label: 'Sim', value: 'sim'}, {label: 'Não', value: 'nao'}]
+    const intercorrencia = [{label: 'Sim', value: 'sim'}, {label: 'Não', value: 'não'}]
     const preNatal = [{label: 'Sim', value: 'sim'}, {label: 'Não', value: 'nao'}]
     const medicamento = [{label: 'Sim', value: 'sim'}, {label: 'Não', value: 'nao'}]
     const parto = [{label: 'Vaginal', value:'vaginal'}, {label: 'Cesárea', value:'cesárea'}]
